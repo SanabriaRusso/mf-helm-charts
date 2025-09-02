@@ -125,16 +125,19 @@ ingress:
   # -- Whether to enable ingress
   enabled: false
   # -- Ingress class name
-  className: alb
-  # -- Ingress Annotations
+  className: nginx
+  # -- Ingress Annotations (supports cert-manager for HTTPS)
   annotations: {}
+    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+  # -- Ingress hostnames and paths configuration
   hosts: []
     #  - host: chart-example.local
     #    paths:
     #      - path: /
     #        pathType: ImplementationSpecific
+  # -- TLS configuration for HTTPS (works with cert-manager)
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
