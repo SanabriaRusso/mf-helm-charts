@@ -1,6 +1,6 @@
 # uptime-service-backend
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 A Helm chart for uptime-service-backend AKA Delegation Program Backend
 
@@ -76,11 +76,11 @@ helmfile status
 | image.repository | string | `"673156464838.dkr.ecr.us-west-2.amazonaws.com/uptime-service-backend"` | The repository of the image |
 | image.tag | string | `"2.0.0rc5-cb6524c"` | The tag of the image. Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | The secrets used to pull the image |
-| ingress.annotations | object | `{}` | Ingress Annotations |
-| ingress.className | string | `"alb"` | Ingress class name |
+| ingress.annotations | object | `{}` | Ingress Annotations (supports cert-manager for HTTPS) |
+| ingress.className | string | `"nginx"` | Ingress class name |
 | ingress.enabled | bool | `false` | Whether to enable ingress |
-| ingress.hosts | list | `[]` |  |
-| ingress.tls | list | `[]` |  |
+| ingress.hosts | list | `[]` | Ingress hostnames and paths configuration |
+| ingress.tls | list | `[]` | TLS configuration for HTTPS (works with cert-manager) |
 | lifecycle | object | `{"preStop":{"exec":{"command":["sh","-c","sleep 15 && kill -SIGQUIT 1"]}}}` | Lifecycle hooks |
 | nameOverride | string | `""` | The release name override |
 | nodeSelector | object | `{}` | Node selector labels |
