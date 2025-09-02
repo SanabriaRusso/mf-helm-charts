@@ -2,22 +2,35 @@ name: autotag
 on:
   push:
     branches: [main]
+
+permissions:
+  contents: write
+
 jobs:
   autotag:
-    runs-on: minafoundation-default-interruptible-runners
+    runs-on: ubuntu-latest
     steps:
       - name: Check out
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
 
       - name: Find and Tag Chart Files
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
           find . -name "Chart.yaml" | while read chart_file; do
             chart_name=$(yq '.name' "$chart_file")
             chart_version=$(yq '.version' "$chart_file")
             tag="${chart_name}-${chart_version}"
+            
             if git tag -l | grep -q "^${tag}$"; then
               echo "Tag ${tag} already exists. Skipping."
             else
