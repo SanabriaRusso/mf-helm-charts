@@ -52,11 +52,11 @@ leaderboardWeb:
 
   image:
     # -- The repository of the image
-    repository: 673156464838.dkr.ecr.us-west-2.amazonaws.com/delegation-program-leaderboard
+    repository: ghcr.io/sanabriarusso/delegation-program-leaderboard-delegation-program-leaderboard
     # -- The pullPolicy used when pulling the image
     pullPolicy: IfNotPresent
     # -- The tag of the image. Overrides the image tag whose default is the chart appVersion.
-    tag: "2.1.0"
+    tag: "main-main-a5b155d"
 
   # -- The secrets used to pull the image
   imagePullSecrets: []
@@ -152,11 +152,11 @@ leaderboardApi:
 
   image:
     # -- The repository of the image
-    repository: 673156464838.dkr.ecr.us-west-2.amazonaws.com/delegation-program-leaderboard-api
+    repository: ghcr.io/sanabriarusso/delegation-program-leaderboard-delegation-program-leaderboard-api
     # -- The pullPolicy used when pulling the image
     pullPolicy: IfNotPresent
     # -- The tag of the image. Overrides the image tag whose default is the chart appVersion.
-    tag: "2.1.0"
+    tag: "main-main-a5b155d"
 
   # -- The secrets used to pull the image
   imagePullSecrets: []
